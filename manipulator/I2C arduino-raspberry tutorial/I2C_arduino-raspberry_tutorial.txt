@@ -1,0 +1,9 @@
+﻿I2C - протокол связи, по которому можно связать arduino и raspberry
+В данном случае raspberry выступает как master устройство, а arduino 
+как slave, т.е. именно raspberry отправляет и читает данные на arduino,
+а не наоборот, а arduino отвечает на запросы в необходимое время
+Для того, чтобы соединить arduino и raspberry потребуется соединить:
+  arduino    raspberry
+  SDA (A4)      SDA
+  SCL (A5)      SCL
+    GND         GND
