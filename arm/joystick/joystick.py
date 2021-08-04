@@ -55,11 +55,6 @@ while done==False:
         if event.type == pygame.QUIT: # If user clicked close
             done=True # Flag that we are done so we exit this loop
         
-        # Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION
-        if event.type == pygame.JOYBUTTONDOWN:
-            print("Joystick button pressed.")
-        if event.type == pygame.JOYBUTTONUP:
-            print("Joystick button released.")
             
  
     # DRAWING STEP
@@ -95,7 +90,7 @@ while done==False:
         for i in range( axes ):
             axis = joystick.get_axis( i )
             textPrint.print(screen, "Axis {} value: {:>6.0f}".format(i, axis) )
-            if (axis!=0): print(axis)
+            if (axis!=0): print("joystick",["Left_X","Left_Y","Right_Y","Right_X"][i], axis)
         textPrint.unindent()
             
         buttons = joystick.get_numbuttons()
@@ -105,6 +100,7 @@ while done==False:
         for i in range( buttons ):
             button = joystick.get_button( i )
             textPrint.print(screen, "Button {:>2} value: {}".format(i,button) )
+            if (button!=0): print("button",i)
         textPrint.unindent()
             
         # Hat switch. All or nothing for direction, not like joysticks.
@@ -116,6 +112,8 @@ while done==False:
         for i in range( hats ):
             hat = joystick.get_hat( i )
             textPrint.print(screen, "Hat {} value: {}".format(i, str(hat)) )
+            #if (hat!=0): print(["Left_X","Left_Y","Right_Y","Right_X"][i], hat)
+            if (hat!=(0,0)): print("arrows",i,hat)
         textPrint.unindent()
         
         textPrint.unindent()
