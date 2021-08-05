@@ -5,16 +5,17 @@ pygame.init()
 #pygame.display.set_caption("Joystick")
 pygame.joystick.init()
     
-while True:
+    
+def test():
+    global pygame,joystick
+    
     pygame.event.get()
     joystick_count = pygame.joystick.get_count()
- 
     
-    # For each joystick:
     for i in range(joystick_count):
         joystick = pygame.joystick.Joystick(i)
         joystick.init()
-        
+            
         axes = joystick.get_numaxes()
         for i in range( axes ):
             axis = joystick.get_axis( i )
@@ -29,6 +30,15 @@ while True:
         for i in range( hats ):
             hat = joystick.get_hat( i )
             if (hat!=(0,0)): print("arrows",i,hat)
+    
+while True:
+ 
+    
+    # For each joystick:
+    
+        
+        
+    test()
             
     sleep(0.1)
     
