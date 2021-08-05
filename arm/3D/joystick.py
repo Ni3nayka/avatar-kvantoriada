@@ -1,3 +1,5 @@
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1' # чтобы заводских надписей не было
 import pygame
 from time import sleep
 
