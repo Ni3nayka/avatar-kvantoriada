@@ -45,10 +45,19 @@ class my_universal_joystick():
         self.joystick = 0
         self.arrow = 0
         self.button = 0
+        self.flag = 1
         self.update()
         
     def update(self):
-        self.joystick,self.button,self.arrow = get_information_from_joystick()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                #pygame.quit()
+                self.flag = 0
+                #quit()
+        if (self.flag): self.joystick,self.button,self.arrow = get_information_from_joystick()
+        else: self.joystick,self.button,self.arrow = [],[],[]
+        #try: self.joystick,self.button,self.arrow = get_information_from_joystick()
+        #except ValueError or pygame.error: pass
         return self.joystick,self.button,self.arrow
                 
     def destroy(self):
