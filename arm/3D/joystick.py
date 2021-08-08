@@ -1,7 +1,6 @@
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1' # чтобы заводских надписей не было
 import pygame
-from time import sleep
 
 pygame.init()
 pygame.joystick.init()
@@ -62,5 +61,5 @@ if __name__ == "__main__":
         #joystick,button,arrow = controller.update()
         controller.update()
         print("joystick:",controller.joystick,"button:",controller.button,"arrow:",controller.arrow)
-        sleep(0.1)
+        pygame.time.wait(100) # sleep(0.1)
     controller.destroy()
