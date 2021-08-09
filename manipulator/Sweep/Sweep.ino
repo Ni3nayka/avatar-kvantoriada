@@ -10,7 +10,7 @@ Servo myservo6;
 
 int FLAG = 0;
 unsigned long int time = 0; 
-#define delta_t 10
+#define delta_t 50
 
 #define MY_ADDRESS  0x04       // I2C адресс arduino
 int pos_real[6] = {90,90,90,90,90,90};
