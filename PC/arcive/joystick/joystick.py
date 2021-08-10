@@ -20,7 +20,7 @@ def get_information_from_joystick():
         axes = joystick.get_numaxes()
         for i in range( axes ):
             axis = joystick.get_axis( i )
-            mas[0].append(axis)
+            mas[0].append(round(axis, 1))
             #if (axis!=0): print("joystick",["Left_X","Left_Y","Right_Y","Right_X"][i], axis)
             
         buttons = joystick.get_numbuttons()
