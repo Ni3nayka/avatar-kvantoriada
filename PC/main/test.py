@@ -1,12 +1,13 @@
 from manipulator_3D import *
-from joystick import *
+from python_arduino_bluetooth import *
 from I2C import *
 
 from copy import deepcopy
 
 if __name__ == "__main__":
     
-    controller = my_universal_joystick()
+    controller = arduino_bluetooth("00:18:e4:40:00:06")
+    controller.start()
     telemetria = simulation_manipulator()
     telemetria.start()
     arduino = arduino_i2c(0x04)
