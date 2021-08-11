@@ -15,7 +15,7 @@ Joystick_ Joystick;
 #define mut_R_pin A0
 #define joystick_x_pin A1
 #define joystick_y_pin A2
-#define joystick_button_pin 4
+#define joystick_button_pin A3
 
 #include "akselerometr.h"
 
@@ -54,6 +54,8 @@ void loop() {
   //Joystick.setZAxis(map(angle_ax,-90,90,0,1023));
   Joystick.setRxAxis(map(angle_ax,-90,90,0,1023));
   Joystick.setRyAxis(map(angle_ay,-90,90,0,1023));
+  //Joystick.setRxAxis(0);
+  //Joystick.setRyAxis(0);
   read_akselerometr(0,angle_ax,angle_ay);
-  Joystick.setRzAxis(map(angle_ax,-90,90,0,1023)); 
+  Joystick.setRzAxis(map(angle_ay,-90,90,0,1023)); 
 }

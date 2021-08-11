@@ -22,6 +22,11 @@ if __name__ == "__main__":
         
         try:
             telemetria.angle_mas[2] = (-controller.joystick[4]+0.5)*150
+            telemetria.angle_mas[1] = (controller.joystick[7]+0.3)*100
+            # controller.joystick[5]
+            telemetria.angle_mas[3] = (-controller.joystick[6])*100
+            telemetria.angle_mas[0] += controller.joystick[0]
+            #print(controller.joystick[6])
             # угол обзора
             #a = 0
             #if (controller.arrow[0][0]!=0): a = 1
