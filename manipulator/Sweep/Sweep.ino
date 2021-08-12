@@ -10,12 +10,12 @@ Servo myservo6;
 
 int FLAG = 0;
 unsigned long int time = 0; 
-#define delta_t 50
+#define delta_t 30
 
 #define MY_ADDRESS  0x04       // I2C адресс arduino
 int pos_real[6] = {90,90,90,90,90,90};
 int pos[6] = {0};
-int wire_in = 0;
+int wire_in = -1;
 
 #define button 2
 
@@ -48,10 +48,10 @@ void loop() {
 }
 
 void read_data() {             // подпрограмма приема данных
-  if (wire_in==0) wire_in = int(Wire.read());
+  if (wire_in==-1) wire_in = int(Wire.read());
   else {
     pos[wire_in] = int(Wire.read());
-    wire_in = 0;
+    wire_in = -1;
   }
 }
  

@@ -39,7 +39,7 @@ void loop() {
     Serial.print(angle_ax); Serial.print(" ");
     Serial.print(angle_ay); Serial.print(" ");
     read_akselerometr(0,angle_ax,angle_ay);
-    Serial.print(angle_ax); Serial.print(" "); 
+    Serial.print(angle_ay); Serial.print(" "); 
     Serial.println();
   }
 }
