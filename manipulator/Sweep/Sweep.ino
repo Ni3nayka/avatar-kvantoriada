@@ -16,8 +16,11 @@ unsigned long int time = 0;
 int pos_real[6] = {90,90,90,90,90,90};
 int pos[6] = {0};
 int wire_in = -1;
+bool device[2] = {0,0}; // rele+mosfet
 
 #define button 2
+#define rele 10
+#define mosfet 11
 
 void setup() {
   Serial.begin(9600);
@@ -36,21 +39,26 @@ void setup() {
   myservo6.attach(9);
   
   pinMode(button,INPUT_PULLUP);
+  pinMode(rele, OUTPUT);
+  pinMode(mosfet, OUTPUT);
   //attachInterrupt(0, myEventListener, FALLING);
 }
 
 
 
 void loop() {
-  //if (FLAG==0)
   if (digitalRead(button)==0) ending(); 
   if (time+delta_t<millis())write_servo();
+  //digitalWrite(rele,1);digitalWrite(mosfet,1);delay(3000); digitalWrite(rele,0);digitalWrite(mosfet,0);delay(1000);
+  digitalWrite(rele,device[0]);
+  digitalWrite(mosfet,device[1]);
 }
 
 void read_data() {             // подпрограмма приема данных
   if (wire_in==-1) wire_in = int(Wire.read());
   else {
-    pos[wire_in] = int(Wire.read());
+    if (wire_in<10) pos[wire_in] = int(Wire.read());
+    else device[wire_in-10] = int(Wire.read());
     wire_in = -1;
   }
 }
