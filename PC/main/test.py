@@ -11,7 +11,7 @@ def map(x,in_min,in_max,out_min,out_max):
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and 0:
     
     controller = arduino_bluetooth("00:18:e4:40:00:06")
     controller.start()
@@ -67,3 +67,12 @@ if __name__ == "__main__":
         pygame.time.wait(10) # sleep(0.1)
 
     camera.enable = False
+
+    
+if __name__ == "__main__":
+    
+    controller = arduino_bluetooth("00:18:e4:40:00:06")
+    controller.start()
+    arduino = arduino_i2c(0x04)
+
+    arduino.write(0,45)
