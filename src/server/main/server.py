@@ -13,7 +13,7 @@ class my_server(Thread):
         self.s.listen(5)                    # Now wait for client connection.
 
         if True:
-            print("start server:")
+            print("SERVER start:")
             print("host:",self.host)
             print("port:",self.port)
 
