@@ -7,7 +7,8 @@ port = 12345                # Reserve a port for your service.
 
 try:
     s.connect((host, port))     
-    s.send(b'Hi i am aslam')
-    print(s.recv(1024))
+    for i in range(10):
+        s.send(b'1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20')
+        print(s.recv(1024))
     s.close                     # Close the socket when done    
-except ConnectionRefusedError: print("connect error") 
+except ConnectionRefusedError or ConnectionResetError: print("connect error") 
