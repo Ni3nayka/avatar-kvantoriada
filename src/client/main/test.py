@@ -1,7 +1,5 @@
 from manipulator_3D import *
 from python_arduino_bluetooth import *
-from I2C import *
-from camera import *
 
 from copy import deepcopy
 
@@ -17,8 +15,6 @@ if __name__ == "__main__" and 0:
     controller.start()
     telemetria = simulation_manipulator()
     telemetria.start()
-    arduino = arduino_i2c(0x04)
-    camera = my_camera(200)
     #camera.start()
     
     mas = deepcopy(telemetria.angle_mas)
@@ -66,13 +62,11 @@ if __name__ == "__main__" and 0:
         
         pygame.time.wait(10) # sleep(0.1)
 
-    camera.enable = False
 
     
 if __name__ == "__main__":
     
     controller = arduino_bluetooth("00:18:e4:40:00:06")
     controller.start()
-    arduino = arduino_i2c(0x04)
 
     arduino.write(0,45)

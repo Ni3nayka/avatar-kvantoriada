@@ -7,7 +7,8 @@ class my_server(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.s = socket.socket()            # Create a socket object
-        self.host = "192.168.43.231" #socket.gethostname()    # Get local machine name
+        #self.host = "192.168.43.231" 
+        self.host = socket.gethostname()    # Get local machine name
         self.port = 12345                   # Reserve a port for your service.
         self.s.bind((self.host, self.port)) # Bind to the port
         self.s.listen(5)                    # Now wait for client connection.
@@ -36,7 +37,8 @@ class my_server(Thread):
                             self.array = deepcopy(a)
                             print(self.array)
                 #break
-            except ConnectionAbortedError and BrokenPipeError: c.close()  # Close the connection 
+            except ConnectionError: c.close()
+            #except ConnectionResetError and ConnectionAbortedError and BrokenPipeError: c.close()  # Close the connection 
             #print ('stop connection from', addr)       
 
 if __name__ == "__main__":

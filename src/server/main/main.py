@@ -15,7 +15,7 @@ if __name__ == "__main__":
     
     mas = [90,90,90,90,45,0,0,0,0,0]
     
-    while True:
+    while False:
         for i in range (5):
             if (mas[i]!=server.array[0][i]):
                 mas[i] = server.array[0][i]
