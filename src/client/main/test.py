@@ -1,8 +1,8 @@
-from manipulator_3D import *
-from python_arduino_bluetooth import *
+from manipulator_3D import simulation_manipulator
+from python_arduino_bluetooth import arduino_bluetooth
+from audio_driver import my_audio
 
 from copy import deepcopy
-
 from time import time
 
 def map(x,in_min,in_max,out_min,out_max):
