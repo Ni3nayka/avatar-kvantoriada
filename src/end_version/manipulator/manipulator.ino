@@ -19,8 +19,10 @@ int wire_in = -1;
 bool device[2] = {0,0}; // rele+mosfet
 
 #define button 2
-#define rele 10
-#define mosfet 11
+#define rele 9//10
+#define mosfet A5//11
+
+int serial_flag = -1;
 
 void setup() {
   Serial.begin(9600);
@@ -31,12 +33,18 @@ void setup() {
   Wire.onReceive(read_data);   // запускаем прием данных
   Wire.onRequest(write_data);  // запускаем отправку данных
   
-  myservo1.attach(4);
+  /*myservo1.attach(4);
   myservo2.attach(5);
   myservo3.attach(6);
   myservo4.attach(7);
   myservo5.attach(8);
-  myservo6.attach(9);
+  myservo6.attach(9);*/
+
+  myservo1.attach(A0);
+  myservo2.attach(A1);
+  myservo3.attach(A2);
+  myservo4.attach(A3);
+  myservo5.attach(A4);
   
   pinMode(button,INPUT_PULLUP);
   pinMode(rele, OUTPUT);
@@ -44,7 +52,27 @@ void setup() {
   //attachInterrupt(0, myEventListener, FALLING);
 }
 
+char slovar[37] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@";
 
+int slovar_serial(char f) {
+  for (int i=0; i<37; i++) {
+    if (slovar[i]==f) return i;  
+  }
+  return -2;
+}
+
+void serial_kostil() {
+  if (Serial.available()) {
+    int a = slovar_serial(Serial.read());
+    if (a==-2) return;
+    if (serial_flag==-1) serial_flag = a;
+    else {
+      if (serial_flag<10) pos[serial_flag] = a*5;
+      else device[serial_flag-10] = a;
+      serial_flag = -1;
+    }
+  }
+}
 
 void loop() {
   if (digitalRead(button)==0) ending(); 
@@ -52,6 +80,7 @@ void loop() {
   //digitalWrite(rele,1);digitalWrite(mosfet,1);delay(3000); digitalWrite(rele,0);digitalWrite(mosfet,0);delay(1000);
   digitalWrite(rele,device[0]);
   digitalWrite(mosfet,device[1]);
+  serial_kostil();
 }
 
 
@@ -79,7 +108,7 @@ void write_data() {            // подпрограмма отправки да
 }
 
 void write_servo() {
-  Serial.println(millis());
+  //Serial.println(millis());
 
   for (int i=0; i<6; i++) {
     if      (pos[i]>pos_real[i]) pos_real[i]++;
