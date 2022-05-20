@@ -37,19 +37,19 @@ void loop() {
     //send_data_to_manipulator(2,analogRead(joystick_y_pin));
     send_data_to_manipulator(10,button_flag);
     // akselerometr
-    int angle_ax, angle_ay;
+    /*int angle_ax, angle_ay;
     read_akselerometr(1,angle_ax,angle_ay);
     send_data_to_manipulator(4,angle_ax);
     send_data_to_manipulator(3,angle_ay);
     read_akselerometr(0,angle_ax,angle_ay);
-    send_data_to_manipulator(1,angle_ay);
+    send_data_to_manipulator(1,angle_ay);*/
   }
   
   if (button_history && !digitalRead(joystick_button_pin)) {
     button_flag = !button_flag;
     //digitalWrite(motor,button_flag);
     //delay(100);
-    send_data_to_manipulator(10,button_flag);
+    //send_data_to_manipulator(10,button_flag);
   }
   button_history = digitalRead(joystick_button_pin);
   
